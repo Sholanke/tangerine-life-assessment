@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tangarine Life - Assesment</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mukta:wght@200;600&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/notify.js/3.0.0/notify.min.js"></script>
+    
+  </head>
+  <body>
+    <div class="drop-area" title="drop file here for upload">
+      <img src="./img/upload.svg" alt="" srcset="" />
+      <p class="description">
+        Drag and drop file here
+        <br />
+        or
+      </p>
+      <input
+        type="file"
+        id="file"
+        accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+      />
+      <label for="file" class="default-btn">Click to upload a file</label>
+    </div>
+
+    <button class="sv-btn default-btn hide">Save file</button>
+    <div class="table-area">
+      Preview of uploaded file will appear here
+    </div>
+
+    <script src="./js/xlsx.full.min.js"></script>
+    <script src="./js/main.js"></script>
+  </body>
+</html>
