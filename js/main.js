@@ -147,7 +147,7 @@ function uploadFile(file, endpoint) {
   fetch(endpoint, options)
     .then((response) => {
       response.status.toString()[0] == 2
-        ? $.notify("File submitted sucessfully", "success-alert")
+        ? $.notify("File submitted successfully", "success-alert")
         : $.notify("We couldn't upload that file", "error-alert");
       return response.json();
     })
