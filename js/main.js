@@ -1,8 +1,16 @@
-const file_input_dom_element = document.querySelector("input[type=file]");
-const table_area = document.querySelector(".table-area");
-const saveBtn = document.querySelector(".sv-btn");
+const getElemFromDom = (str) => {
+  return document.querySelector(str);
+};
+const getAllElemFromDom = (str) => {
+  return document.querySelectorAll(str);
+};
+
+const file_input_dom_element = getElemFromDom("input[type=file]");
+const table_area = getElemFromDom(".table-area");
+const saveBtn = getElemFromDom(".sv-btn");
 const endpoint = "https://httpbin.org/anything";
-const dropArea = document.querySelector(".drop-area");
+const dropArea = getElemFromDom(".drop-area");
+const file_name_node = getElemFromDom("h1");
 let currentFile;
 let file_errors_array = [];
 const accepted_headers = [
@@ -50,6 +58,8 @@ function unHighlight() {
 function handleFile(e) {
   const files = e.target.files || e.dataTransfer.files,
     f = files[0];
+  file_name_node.innerHTML = `File Name : ${f.name}`;
+
   let reader = new FileReader();
   reader.onload = function (e) {
     let data = new Uint8Array(e.target.result);
@@ -60,7 +70,7 @@ function handleFile(e) {
     //getting work sheet
     const workSheet = workbook.Sheets[first_sheet];
     const work_sheet_to_json = XLSX.utils.sheet_to_json(workSheet);
-    console.log(work_sheet_to_json);
+    // console.log(work_sheet_to_json);
 
     //check if each acceptable header exists
     accepted_headers.forEach((column) => {
@@ -137,7 +147,7 @@ function uploadFile(file, endpoint) {
   fetch(endpoint, options)
     .then((response) => {
       response.status.toString()[0] == 2
-        ? $.notify("file submitted sucessfully", "success-alert")
+        ? $.notify("File submitted sucessfully", "success-alert")
         : $.notify("We couldn't upload that file", "error-alert");
       return response.json();
     })
@@ -145,9 +155,8 @@ function uploadFile(file, endpoint) {
       saveBtn.classList.remove("loading");
     })
     .catch((error) => {
-      $.notify("something went wrong", "error-alert");
+      $.notify("Something went wrong", "error-alert");
       saveBtn.classList.remove("loading");
     });
 }
-
 saveBtn.addEventListener("click", () => uploadFile(currentFile, endpoint));

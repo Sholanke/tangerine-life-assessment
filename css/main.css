@@ -34,8 +34,6 @@
 
 .sv-btn {
   margin-left: auto;
-  margin-top: 50px;
-  display: block;
 }
 
 .sv-btn.hide {
@@ -59,6 +57,14 @@
   opacity: 0.8;
   top: 0;
   left: 0;
+}
+
+.header {
+  margin-top: 50px;
+}
+
+.header h1 {
+  font-weight: 900;
 }
 
 button,
