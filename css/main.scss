@@ -36,8 +36,26 @@
     display: none;
   }
 }
-button, a {
-    cursor: pointer;
+.loading {
+  position: relative;
+  overflow: hidden;
+  &:after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: url("../img/loader.gif"), rgba(255, 255, 255, 0.5);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.8;
+    top: 0;
+    left: 0;
+  }
+}
+button,
+a {
+  cursor: pointer;
 }
 body {
   padding: 20px 20px 40px 20px;
@@ -159,5 +177,42 @@ body {
   &.highlight {
     border: 1.5px solid #ff9101;
     background-color: rgba(255, 99, 71, 0.151);
+  }
+}
+
+// notify css config
+.notifyjs-bootstrap-base {
+  padding: 10px 20px !important;
+  max-width: 100vw !important;
+  border: 0px !important;
+
+  span {
+    // text-transform: capitalize;
+    white-space: normal !important;
+    @include mobile {
+      text-align: center !important;
+      display: block;
+    }
+  }
+}
+.notifyjs-corner {
+  @include mobile {
+    top: unset !important;
+    bottom: 0;
+  }
+}
+.notifyjs-bootstrap-success-alert {
+  border-left: 4px solid #0080008f !important;
+  background: rgb(221, 237, 221) !important;
+  span {
+    color: green !important;
+  }
+}
+
+.notifyjs-bootstrap-error-alert {
+  border-left: 4px solid tomato !important;
+  background: rgb(255, 224, 219) !important;
+  span {
+    color: tomato !important;
   }
 }

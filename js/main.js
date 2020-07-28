@@ -68,7 +68,7 @@ function handleFile(e) {
         // console.log(`Found column ${column} in excel sheet header`);
       } else {
         file_errors_array.push(
-          `Couldn't find column "${column}" in excel sheet headers`
+          `Couldn't find header "${column}" in excel sheet headers`
         );
       }
     });
@@ -77,16 +77,18 @@ function handleFile(e) {
     Object.keys(work_sheet_to_json[0]).forEach((column) => {
       accepted_headers.includes(column)
         ? true
-        : file_errors_array.push(`Found extra column "${column}" in headers`);
+        : file_errors_array.push(`Found extra header "${column}" in headers`);
     });
 
     //if any, output error, else display file
     file_errors_array.length > 0
-      ? file_errors_array.map((error) =>
-          console.error("PROBLEM WITH EXCEL FILE >>>", error)
-        )
+      ? file_errors_array.map((error) => {
+          console.error("PROBLEM WITH EXCEL FILE >>>", error);
+          $.notify(error, "error-alert");
+        })
       : (() => {
           console.log("No Errors Found With Excel Sheet");
+          $.notify("Valid Excel Sheet", "success-alert");
 
           //show save button
           saveBtn.classList.remove("hide");
@@ -120,6 +122,9 @@ function handleFile(e) {
 
 //handle actual file upload to server
 function uploadFile(file, endpoint) {
+  //loader
+  saveBtn.classList.add("loading");
+
   const options = {
     method: "POST",
     headers: {
@@ -129,12 +134,20 @@ function uploadFile(file, endpoint) {
     body: currentFile,
   };
   // console.log(options);
-  fetch(endpoint, options).then((response) => {
-    response.status.toString()[0] == 2
-      ? alert("file submitted sucessfully")
-      : alert("We couldn't upload that file");
-    return response.json();
-  });
+  fetch(endpoint, options)
+    .then((response) => {
+      response.status.toString()[0] == 2
+        ? $.notify("file submitted sucessfully", "success-alert")
+        : $.notify("We couldn't upload that file", "error-alert");
+      return response.json();
+    })
+    .then((obj) => {
+      saveBtn.classList.remove("loading");
+    })
+    .catch((error) => {
+      $.notify("something went wrong", "error-alert");
+      saveBtn.classList.remove("loading");
+    });
 }
 
 saveBtn.addEventListener("click", () => uploadFile(currentFile, endpoint));
