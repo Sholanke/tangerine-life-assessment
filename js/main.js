@@ -56,6 +56,9 @@ function unHighlight() {
 
 //handle display of file
 function handleFile(e) {
+  //clear errors array
+  file_errors_array = [];
+
   const files = e.target.files || e.dataTransfer.files,
     f = files[0];
   file_name_node.innerHTML = `File Name : ${f.name}`;
@@ -92,10 +95,12 @@ function handleFile(e) {
 
     //if any, output error, else display file
     file_errors_array.length > 0
-      ? file_errors_array.map((error) => {
-          console.error("PROBLEM WITH EXCEL FILE >>>", error);
-          $.notify(error, "error-alert");
-        })
+      ? (() => {
+          file_errors_array.map((error) => {
+            console.error("PROBLEM WITH EXCEL FILE >>>", error);
+            $.notify(error, "error-alert");
+          });
+        })()
       : (() => {
           console.log("No Errors Found With Excel Sheet");
           $.notify("Valid Excel Sheet", "success-alert");
