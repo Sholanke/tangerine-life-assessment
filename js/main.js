@@ -18,21 +18,21 @@ const accepted_headers = [
   "Transport Allowance",
 ];
 
-file_input_dom_element?.addEventListener("change", handleFile, false);
+file_input_dom_element.addEventListener("change", handleFile, false);
 
 // drag nad drop functionality code
-dropArea?.addEventListener("dragenter", handlerFunction, false);
-dropArea?.addEventListener("dragleave", handlerFunction, false);
-dropArea?.addEventListener("dragover", handlerFunction, false);
-dropArea?.addEventListener("drop", handlerFunction, false);
+dropArea.addEventListener("dragenter", handlerFunction, false);
+dropArea.addEventListener("dragleave", handlerFunction, false);
+dropArea.addEventListener("dragover", handlerFunction, false);
+dropArea.addEventListener("drop", handlerFunction, false);
 
-dropArea?.addEventListener("drop", handleFile, false);
+dropArea.addEventListener("drop", handleFile, false);
 
-dropArea?.addEventListener("dragenter", highlight, false);
-dropArea?.addEventListener("dragover", highlight, false);
+dropArea.addEventListener("dragenter", highlight, false);
+dropArea.addEventListener("dragover", highlight, false);
 
-dropArea?.addEventListener("dragleave", unHighlight, false);
-dropArea?.addEventListener("drop", unHighlight, false);
+dropArea.addEventListener("dragleave", unHighlight, false);
+dropArea.addEventListener("drop", unHighlight, false);
 
 function handlerFunction() {
   event.preventDefault();
