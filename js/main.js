@@ -102,11 +102,14 @@ function handleFile(e) {
     //if any, output error, else display file
     file_errors_array.length > 0
       ? (() => {
+          $.notify("Invalid excel sheet", "error-alert");
+
           //hide save button
           saveBtn.classList.add("hide");
+
           file_errors_array.map((error) => {
             console.error("PROBLEM WITH EXCEL FILE >>>", error);
-            $.notify(error, "error-alert");
+            table_area.innerHTML += `<p class="error">${error}<p>`;
           });
         })()
       : (() => {

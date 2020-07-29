@@ -81,6 +81,21 @@ body {
   margin-bottom: 40px;
 }
 
+.table-area p.error {
+  color: tomato;
+  margin: 0 0 20px 0;
+  padding: 5px 20px;
+  border-left: 3px solid tomato;
+  -webkit-box-shadow: 0 0 20px #00000014;
+          box-shadow: 0 0 20px #00000014;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: inline-block;
+  font-weight: 900;
+  font-size: 110%;
+}
+
 .table-area,
 .table-area * {
   font-size: 0.9rem;
