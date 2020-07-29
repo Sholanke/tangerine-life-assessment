@@ -59,6 +59,12 @@ function handleFile(e) {
   //clear errors array
   file_errors_array = [];
 
+  //clear current file
+  currentFile = [];
+
+  //clear table area for new file
+  table_area.innerHTML = "";
+
   const files = e.target.files || e.dataTransfer.files,
     f = files[0];
   file_name_node.innerHTML = `File Name : ${f.name}`;
@@ -107,9 +113,6 @@ function handleFile(e) {
 
           //show save button
           saveBtn.classList.remove("hide");
-
-          //clear table area for new file
-          table_area.innerHTML = "";
 
           //add headers to table in dom
           let headersInnerHtml = ``;
