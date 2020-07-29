@@ -102,6 +102,8 @@ function handleFile(e) {
     //if any, output error, else display file
     file_errors_array.length > 0
       ? (() => {
+          //hide save button
+          saveBtn.classList.add("hide");
           file_errors_array.map((error) => {
             console.error("PROBLEM WITH EXCEL FILE >>>", error);
             $.notify(error, "error-alert");
