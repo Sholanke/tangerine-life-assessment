@@ -62,9 +62,6 @@ function handleFile(e) {
   //clear current file
   currentFile = [];
 
-  //clear table area for new file
-  table_area.innerHTML = "";
-
   const files = e.target.files || e.dataTransfer.files,
     f = files[0];
   file_name_node.innerHTML = `File Name : ${f.name}`;
@@ -98,6 +95,9 @@ function handleFile(e) {
         ? true
         : file_errors_array.push(`Found extra header "${column}" in headers`);
     });
+
+    //clear table area for new file
+    table_area.innerHTML = "";
 
     //if any, output error, else display file
     file_errors_array.length > 0
